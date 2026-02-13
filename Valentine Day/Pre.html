@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Special ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffb6c1 0%, #ff4d6d 70%, #c9184a 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            transition: background 0.5s ease;
+        }
+
+        /* VALENTINE THEME DECORATIONS */
+        body::before {
+            content: '❤️';
+            font-size: 12vw;
+            position: fixed;
+            top: 5%;
+            left: 5%;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '🌹';
+            font-size: 15vw;
+            position: fixed;
+            bottom: 5%;
+            right: 5%;
+            opacity: 0.1;
+            transform: rotate(20deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* TRANSPARENT GLASS CARD */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 35px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 220, 220, 0.6) inset;
+            padding: 2.8rem 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            color: #3a0a1f;
+            transition: all 0.4s ease;
+            z-index: 10;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        /* headings, texts */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 3px 3px 0 rgba(255, 200, 220, 0.9);
+            letter-spacing: 2px;
+            color: #590d22;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #800f2f;
+            text-shadow: 2px 2px 0 #ffb3c6;
+            margin: 0.8rem 0;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #a4133c;
+        }
+
+        p {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d0a15;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 40px;
+            padding: 12px 25px;
+            display: inline-block;
+            margin: 15px 0;
+            border: 1px solid #fff0f3;
+        }
+
+        .btn {
+            background: #ff8fa3;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: #38040e;
+            box-shadow: 0 10px 0 #a4133c, 0 8px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.1s linear;
+            margin: 20px 0 10px;
+            border: 2px solid #ffe6e9;
+            letter-spacing: 2px;
+        }
+
+        .btn:active {
+            transform: translateY(7px);
+            box-shadow: 0 3px 0 #590d22, 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn.small {
+            font-size: 1.4rem;
+            padding: 12px 30px;
+        }
+
+        input {
+            background: rgba(255, 245, 245, 0.9);
+            border: 3px solid #ff4d6d;
+            border-radius: 50px;
+            padding: 18px 25px;
+            font-size: 1.5rem;
+            width: 90%;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+            color: #3a0a1f;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #c9184a;
+
+
+box-shadow: 0 0 0 5px rgba(255, 105, 135, 0.4);
+        }
+
+        .option-group {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 40px 0 20px;
+        }
+
+        .option-btn {
+            background: #ffb3c6;
+            border: 3px solid white;
+            padding: 18px 30px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 80px;
+            color: #590d22;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 0 #9d1f3f;
+            flex: 1 1 auto;
+            min-width: 160px;
+        }
+
+        .option-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #800f2f;
+        }
+
+        .option-btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .back-btn {
+            background: #ffccd5;
+            border: 2px solid white;
+            font-size: 1.7rem;
+            padding: 12px 50px;
+            border-radius: 40px;
+            margin: 35px auto 10px;
+            display: inline-block;
+            font-weight: bold;
+            color: #590d22;
+            box-shadow: 0 5px 0 #a12b4a;
+            cursor: pointer;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+            justify-items: center;
+        }
+
+        .image-box {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: #ffe6e9;
+            border-radius: 30px;
+            border: 4px solid white;
+            box-shadow: 0 10px 0 #ad2e4e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #aa1141;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-container {
+            margin: 30px 0;
+            width: 100%;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 0 #b12b4b;
+            background: black;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .letter-paper {
+            background: #fff0f0;
+            background-image: radial-gradient(circle at 30% 40%, rgba(255, 200, 210, 0.6) 0%, transparent 30%);
+            border: 6px solid #ffb3c6;
+            border-radius: 50px 20px 50px 20px;
+            padding: 40px 30px;
+            box-shadow: 20px 20px 0 #b34160;
+            color: #261117;
+            text-align: left;
+            line-height: 2.2;
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 25px 0;
+        }
+
+        .letter-paper h2 {
+            text-align: center;
+            border-bottom: 3px dashed #ff8095;
+            padding-bottom: 10px;
+        }
+
+        .highlight {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            color: #fc053c;
+            text-shadow: 4px 4px 0 #ffbebe;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- MAIN CONTAINER : ALL PAGES LOAD HERE DYNAMICALLY -->
+    <div id="app" style="width:100%; display:flex; justify-content: center; align-items: center; min-height:100vh;"></div>
+
+    <script>
+        (function() {
+            // ---- STATE MANAGEMENT ----
+            let currentPage = 'page1';             // page1, page2, page3, page4, loveletter, photo, music
+            let visitedOptions = {                   // for third page next button reveal
+
+loveLetter: false,
+                photo: false,
+                music: false
+            };
+            const CORRECT_PASSWORD = "18012026";
+
+            // ---- HELPER FUNCTIONS ----
+            function showPage(pageId) {
+                currentPage = pageId;
+                renderApp();
+            }
+
+            // reset to page 3 but keep visitedOptions (only for back actions)
+            function goBackToOptions() {
+                currentPage = 'page3';
+                renderApp();
+            }
+
+            // check if all three subpages have been visited
+            function allSubpagesVisited() {
+                return visitedOptions.loveLetter && visitedOptions.photo && visitedOptions.music;
+            }
+
+            // ---- MAIN RENDER FUNCTION ----
+            function renderApp() {
+                const appDiv = document.getElementById('app');
+                if (!appDiv) return;
+
+                let html = '';
+
+                // ---------- PAGE 1 ----------
+                if (currentPage === 'page1') {
+                    html = `
+                        <div class="glass-card fade-in">
+                            <h1>Happy Valentine Chit ❤️</h1>
+                            <p style="font-size:1.8rem;">"On this special day, I just want to remind you how much you mean to me. 
+Your smile makes my days brighter and your love makes my life complete. 
+Happy Valentine’s Day my love."</p>
+                            
+                            <p style="font-size:1.4rem;">↓ ↓ ↓</p><br>
+                            <button class="btn" id="toPage2Btn">Next!!!</button>
+                        </div>
+                    `;
+                }
+
+                // ---------- PAGE 2 (password) ----------
+                else if (currentPage === 'page2') {
+                    html = `
+                        <div class="glass-card fade-in" style="max-width:500px;">
+                            <h2 style="font-size:2.2rem;">🔐 Enter Ko & Chit Date</h2>
+                            <input type="password" id="passwordInput" placeholder="••••••••" value="">
+                            <button class="btn small" id="enterPasswordBtn">Enter</button>
+                            <p id="passwordError" style="color:#990033; font-size:1.3rem; margin-top:10px;"></p>
+                        </div>
+                    `;
+                }
+
+                // ---------- PAGE 3 (options) ----------
+                else if (currentPage === 'page3') {
+                    // determine if next button should be shown
+                    const showNext = allSubpagesVisited();
+                    html = `
+                        <div class="glass-card fade-in" id="page3-card">
+                            <div id="welcomeMessage" style="font-size:2.5rem; font-weight:bold; color:#590d22; margin-bottom:30px;">
+                                💖 Welcome Chit, hope you happy 💖
+                            </div>
+                            <div id="optionsArea">
+                                <div class="option-group">
+                                    <button class="option-btn" id="loveLetterOpt">💌 Love Letter</button>
+                                    <button class="option-btn" id="photoOpt">📸 Photo</button>
+                                    <button class="option-btn" id="musicOpt">📹 video</button>
+                                </div>
+                                ${showNext ? '<button class="btn" id="gotoPage4Btn">Next!!!</button>' : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // ---------- PAGE 4 (final I love you) ----------
+                else if (currentPage === 'page4') {
+                    html = `
+                        <div class="glass-card fade-in" style="background:rgba(255, 190, 200, 0.3);">
+                            <div class="highlight">I Love You So Much, Chit ❤️</div>
+                            <p style="font-size:2rem;">အချစ်ဆုံး ချစ်သူရေ ...</p>
+
+
+<div style="font-size:5rem; margin:30px 0;">🌹🥰🌹</div>
+                        </div>
+                    `;
+                }
+
+                // ---------- LOVE LETTER SUBPAGE ----------
+                else if (currentPage === 'loveLetter') {
+                    html = `
+                        <div class="glass-card fade-in" style="max-width:650px;">
+                            <div class="letter-paper">
+                                <h2>💘 My Love 💘</h2>
+                                <p style="background:none; padding:0; font-size:1.5rem; color:#3a111c;">
+                                Dear Chit ... <br><br>
+                                Every moment with you feels like a beautiful dream I never want to wake up from.
+                                Your smile lights up my world like a thousands stars, and your love fills my heart with endless joy. 
+                                I want to promise you that my love for you will never fade.
+                                On this Valentine's Day, I just want you to know that you are the reason my life is so beautiful.
+                                With you, every day feels like a celebration of love. 
+                                In a world full of billions of people, you are the only one I see. 
+                                Thank you for choosing me. 
+                                Happy Valentine's Day, Chit. I cherish you more than words can say.<br>
+                                <br>
+                                <span style="font-size:2rem;">💋</span> Ko
+                                </p>
+                            </div>
+                            <button class="back-btn" id="backFromLetter">Back</button>
+                        </div>
+                    `;
+                    // mark visited
+                    if (!visitedOptions.loveLetter) {
+                        visitedOptions.loveLetter = true;
+                    }
+                }
+
+                // ---------- PHOTO SUBPAGE ----------
+                else if (currentPage === 'photo') {
+                    // sample images (base64 or emoji, but we use cute placeholders with text & bg)
+                    html = `
+                        <div class="glass-card fade-in">
+                            <h2 style="font-size:2.8rem;">📸 Our Memories</h2>
+                            <div class="image-grid">
+                                <div class="image-box" style="background:#fec5bb; font-size:3rem;"><img src="1.jpg"></div>
+                                <div class="image-box" style="background:#ffe5d9; font-size:3rem;"><img src="2.jpg"></div>
+                                <div class="image-box" style="background:#ffd7ba; font-size:3rem;"><img src="3.jpg"></div>
+                                <div class="image-box" style="background:#fec89a; font-size:3rem;"><img src="4.jpg"></div>
+                            </div>
+                            <p style="font-size:1.2rem;">We'll keep making beautiful memories together🥰</p>
+                            <button class="back-btn" id="backFromPhoto">Back</button>
+                        </div>
+                    `;
+                    if (!visitedOptions.photo) {
+                        visitedOptions.photo = true;
+                    }
+                }
+
+                // ---------- MUSIC SUBPAGE (video) ----------
+                else if (currentPage === 'music') {
+                    html = `
+                        <div class="glass-card fade-in">
+                            <h2> My favorite flower 📹</h2>
+                            <div class="video-container">
+                                <video controls>
+                                    <source src="video-1.MOV" type="video/mp4"> 
+
+                                     </video>
+                            </div>
+                   
+                            <button class="back-btn" id="backFromMusic">Back</button>
+                        </div>
+                    `;
+                    if (!visitedOptions.music) {
+                        visitedOptions.music = true;
+                    }
+                }
+
+                // render into app
+                appDiv.innerHTML = html;
+
+                // ---------- POST-RENDERING EVENT LISTENERS ----------
+
+                // PAGE 1 : next to page2
+
+
+if (currentPage === 'page1') {
+                    document.getElementById('toPage2Btn')?.addEventListener('click', () => {
+                        showPage('page2');
+                    });
+                }
+
+                // PAGE 2 : password check
+                else if (currentPage === 'page2') {
+                    const enterBtn = document.getElementById('enterPasswordBtn');
+                    const passInput = document.getElementById('passwordInput');
+                    const errorEl = document.getElementById('passwordError');
+
+                    const checkPassword = () => {
+                        const val = passInput.value.trim();
+                        if (val === CORRECT_PASSWORD) {
+                            // reset visited options when starting page3 (optional, but fresh)
+                            visitedOptions = { loveLetter: false, photo: false, music: false };
+                            showPage('page3');
+                            // after showing page3, we need to trigger the 5-second fade for welcome message
+                            setTimeout(() => {
+                                const welcomeMsg = document.getElementById('welcomeMessage');
+                                if (welcomeMsg) {
+                                    welcomeMsg.style.transition = 'opacity 0.5s';
+                                    welcomeMsg.style.opacity = '0';
+                                    setTimeout(() => {
+                                        if (welcomeMsg) welcomeMsg.remove(); // remove after fade
+                                    }, 600);
+                                }
+                            }, 5000);  // 5 seconds
+                        } else {
+                            errorEl.innerText = '❌ password မှားနေပါတယ် ပြန်ထည့်ပါနော်';
+                        }
+                    };
+
+                    enterBtn?.addEventListener('click', checkPassword);
+                    passInput?.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') checkPassword();
+                    });
+                }
+
+                // PAGE 3 : options and next + welcome fade out
+                else if (currentPage === 'page3') {
+                    // set fadeout for welcome message after 5 seconds
+                    setTimeout(() => {
+                        const welcomeMsg = document.getElementById('welcomeMessage');
+                        if (welcomeMsg) {
+                            welcomeMsg.style.transition = 'opacity 0.8s';
+                            welcomeMsg.style.opacity = '0';
+                            setTimeout(() => {
+                                if (welcomeMsg && welcomeMsg.parentNode) welcomeMsg.remove();
+                            }, 900);
+                        }
+                    }, 5000);
+
+                    // Love letter
+                    document.getElementById('loveLetterOpt')?.addEventListener('click', () => {
+                        showPage('loveLetter');
+                    });
+                    // Photo
+                    document.getElementById('photoOpt')?.addEventListener('click', () => {
+                        showPage('photo');
+                    });
+                    // Music
+                    document.getElementById('musicOpt')?.addEventListener('click', () => {
+                        showPage('music');
+                    });
+                    // Next button (if visible)
+                    document.getElementById('gotoPage4Btn')?.addEventListener('click', () => {
+                        showPage('page4');
+                    });
+                }
+
+                // BACK BUTTONS (loveLetter, photo, music)
+                else if (currentPage === 'loveLetter') {
+                    document.getElementById('backFromLetter')?.addEventListener('click', goBackToOptions);
+                }
+                else if (currentPage === 'photo') {
+                    document.getElementById('backFromPhoto')?.addEventListener('click', goBackToOptions);
+                }
+
+
+else if (currentPage === 'music') {
+                    document.getElementById('backFromMusic')?.addEventListener('click', goBackToOptions);
+                }
+
+                // In page4, nothing else. final.
+            }
+
+            // ---- initial render ----
+            renderApp();
+
+            // make sure if any back leads to options, the visitedOptions cause the next button to appear.
+            // override goBackToOptions to re-render page3 correctly.
+            window.goBackToOptions = function() {
+                currentPage = 'page3';
+                renderApp();
+                // if we re-render page3, we have to set welcome timeout again
+                setTimeout(() => {
+                    const welcomeMsg = document.getElementById('welcomeMessage');
+                    if (welcomeMsg) {
+                        welcomeMsg.style.transition = 'opacity 0.8s';
+                        welcomeMsg.style.opacity = '0';
+                        setTimeout(() => {
+                            if (welcomeMsg && welcomeMsg.parentNode) welcomeMsg.remove();
+                        }, 900);
+                    }
+                }, 5000);
+            };
+
+            // reassign function for back consistency
+            goBackToOptions = window.goBackToOptions;
+
+            // re-run event for dynamic next button when returning from subsections? 
+            // renderApp already covers.
+
+        })();
+    </script>
+</body>
+</html>
